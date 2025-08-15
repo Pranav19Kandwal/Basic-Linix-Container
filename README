@@ -1,0 +1,42 @@
+# ##################################################################### #
+#      PROJECT TITILE: Basic Linux Container                            #
+#      AUTHOR:         PRANAV KANDWAL                                   #
+# ##################################################################### #
+
+# ################################################# OVERVIEW ###################################################### #    
+# 1. A minimal container runtime implemented in C.                                                                  #
+# 2. It demonstrates basic containerization concepts using Linux namespaces, cgroups(v2), utilities and libraries.  #
+# 3. It runs an isolated shell(/bin/sh) inside a minimal BusyBox-based root filesystem.                             #
+# ################################################################################################################# #
+
+# ################################ FEATURES ###################################### #
+# 1. Namespaces isolation:                                                         #
+# 1.a. PID namespace (process isolation)                                           #
+# 1.b. Mount namespace (filesystem isolation)                                      #
+# 1.c. Network namespace (network stack isolation)                                 #
+#                                                                                  #
+# 2. cgroup-v2 resource limits:                                                    #
+# 2.a Maximum processes (pids.max)                                                 #
+# 2.b Memory usage (memory.max)                                                    #
+# 2.c CPU usage (cpu.max)                                                          #
+#                                                                                  #
+# 3. Networking setup:                                                             #
+# 3.a Creates a veth pair between host and container                               #
+# 3.b Assigns IP addresses and routing inside container network namespace          #
+# 3.c Enables NAT on host for container connectivity                               #
+#                                                                                  #
+# 4. Root filesystem setup:                                                        #
+# 4.a BusyBox static binary with essential tools(sh, ls, ps, hostname, etc.)       #
+# 4.b Minimal /etc/passwd and /etc/group                                           # 
+# ################################################################################ #
+
+# ################ RUN ###################### #                                  
+# sudo ./setup.sh                             #
+# gcc simple_conatiner.c -o simple_conatiner  #
+# sudo ./simple_container                     #
+# ########################################### #
+
+# ################### CLEANUP ###################### #
+# On exit, the program removes the cgroup directory  # 
+# and network namespace symlink automatically.       #
+# ################################################## #
